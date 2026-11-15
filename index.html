@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SKY CRED — check the sky's credit score before you step out. Live weather with simple, actionable verdicts for any city.">
+  <meta name="theme-color" content="#101c3f">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌤️</text></svg>">
+  <title>SKY CRED — Check the sky's credit score before you step out</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="brand-row">
+        <span class="brand-mark" aria-hidden="true">🌤️</span>
+        <h1 class="brand">SKY CRED</h1>
+      </div>
+      <p class="tagline">Check the sky's credit score before you step out.</p>
+    </header>
+
+    <form id="search-form" class="search" role="search" novalidate>
+      <label class="sr-only" for="city-input">City name</label>
+      <input id="city-input" name="city" type="text" placeholder="Search any city (e.g. Delhi, London)" autocomplete="off" spellcheck="false">
+      <button type="submit" id="search-btn">Search</button>
+    </form>
+    <p id="search-error" class="search-error" role="alert" hidden>Please enter a city name.</p>
+
+    <nav class="chips" id="city-chips" aria-label="Popular cities"></nav>
+
+    <p id="live-status" class="sr-only" role="status" aria-live="polite"></p>
+
+    <section id="loading-panel" class="panel loading-panel" hidden>
+      <span class="spinner" aria-hidden="true"></span>
+      <p id="loading-text">Fetching weather…</p>
+    </section>
+
+    <section id="error-panel" class="panel error-panel" hidden>
+      <span class="error-icon" aria-hidden="true">⚠️</span>
+      <h2 id="error-title">Something went wrong</h2>
+      <p id="error-message"></p>
+      <button type="button" id="retry-btn" class="retry-btn">Retry</button>
+    </section>
+
+    <main id="weather-card" class="card weather-card" hidden>
+      <div id="updating-pill" class="updating-pill" hidden>Updating…</div>
+      <div class="weather-top">
+        <div class="weather-place">
+          <h2 id="city-name">—</h2>
+          <p id="local-time">—</p>
+        </div>
+        <div class="temp-block">
+          <span id="temp-c" class="temp">—</span><span class="temp-unit">°C</span>
+        </div>
+      </div>
+      <div class="condition-row">
+        <img id="weather-icon" alt="" width="48" height="48" hidden>
+        <div>
+          <p id="condition-text" class="condition-text">—</p>
+          <p id="feels-like" class="feels-like">—</p>
+        </div>
+      </div>
+      <div class="personality">
+        <p class="personality-eyebrow">Sky verdict</p>
+        <h3 id="personality-title">—</h3>
+        <p id="personality-desc">—</p>
+        <p class="personality-note">Application-generated interpretation — not a real credit score.</p>
+      </div>
+      <div class="metrics">
+        <div class="metric">
+          <p class="metric-label">Humidity</p>
+          <p class="metric-value"><span id="humidity">—</span><span class="metric-unit">%</span></p>
+        </div>
+        <div class="metric">
+          <p class="metric-label">Wind</p>
+          <p class="metric-value"><span id="wind">—</span><span class="metric-unit">km/h</span></p>
+        </div>
+        <div class="metric">
+          <p class="metric-label">UV Index</p>
+          <p class="metric-value"><span id="uv">—</span><span class="metric-unit">Index</span></p>
+        </div>
+      </div>
+      <dl class="secondary">
+        <div class="secondary-item"><dt>Cloud cover</dt><dd id="cloud">—</dd></div>
+        <div class="secondary-item"><dt>Visibility</dt><dd id="visibility">—</dd></div>
+        <div class="secondary-item"><dt>Pressure</dt><dd id="pressure">—</dd></div>
+        <div class="secondary-item"><dt>Wind speed</dt><dd id="wind-speed">—</dd></div>
+        <div class="secondary-item"><dt>Temperature</dt><dd id="temp-f">—</dd></div>
+        <div class="secondary-item"><dt>Last updated</dt><dd id="last-updated">—</dd></div>
+      </dl>
+    </main>
+
+    <section class="card json-card" id="json-card">
+      <div class="json-header">
+        <h2>API Response</h2>
+        <div class="json-controls">
+          <div class="tabs" role="tablist" aria-label="Response view">
+            <button type="button" class="tab active" id="tab-formatted" role="tab" aria-selected="true" aria-controls="json-view">Formatted</button>
+            <button type="button" class="tab" id="tab-raw" role="tab" aria-selected="false" aria-controls="json-view">Raw</button>
+          </div>
+          <button type="button" id="copy-btn" class="copy-btn" disabled>Copy</button>
+        </div>
+      </div>
+      <pre id="json-view" tabindex="0">Search a city to view the live API response here.</pre>
+    </section>
+
+    <footer class="app-footer">
+      <p>Weather data by <a href="https://www.weatherapi.com/" target="_blank" rel="noopener">WeatherAPI.com</a></p>
+      <p>SKY CRED — MVP</p>
+    </footer>
+  </div>
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
