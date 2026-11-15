@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="SKY CRED — check the sky's credit score before you step out. Live weather with simple, actionable verdicts for any city.">
-  <meta name="theme-color" content="#101c3f">
+  <meta name="theme-color" content="#e23744">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌤️</text></svg>">
   <title>SKY CRED — Check the sky's credit score before you step out</title>
   <link rel="stylesheet" href="css/styles.css">
@@ -12,20 +12,24 @@
 <body>
   <div class="app">
     <header class="app-header">
-      <div class="brand-row">
-        <span class="brand-mark" aria-hidden="true">🌤️</span>
-        <h1 class="brand">SKY CRED</h1>
-      </div>
+      <h1 class="brand">SKY CRED</h1>
       <p class="tagline">Check the sky's credit score before you step out.</p>
     </header>
 
     <form id="search-form" class="search" role="search" novalidate>
       <label class="sr-only" for="city-input">City name</label>
-      <input id="city-input" name="city" type="text" placeholder="Search any city (e.g. Delhi, London)" autocomplete="off" spellcheck="false">
+      <div class="search-box">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <line x1="16.5" y1="16.5" x2="21" y2="21"></line>
+        </svg>
+        <input id="city-input" name="city" type="text" placeholder="Search any city (e.g. Delhi, London)" autocomplete="off" spellcheck="false">
+      </div>
       <button type="submit" id="search-btn">Search</button>
     </form>
     <p id="search-error" class="search-error" role="alert" hidden>Please enter a city name.</p>
 
+    <p class="section-label">Popular cities</p>
     <nav class="chips" id="city-chips" aria-label="Popular cities"></nav>
 
     <p id="live-status" class="sr-only" role="status" aria-live="polite"></p>
@@ -80,6 +84,7 @@
           <p class="metric-value"><span id="uv">—</span><span class="metric-unit">Index</span></p>
         </div>
       </div>
+      <p class="section-label">More info</p>
       <dl class="secondary">
         <div class="secondary-item"><dt>Cloud cover</dt><dd id="cloud">—</dd></div>
         <div class="secondary-item"><dt>Visibility</dt><dd id="visibility">—</dd></div>
